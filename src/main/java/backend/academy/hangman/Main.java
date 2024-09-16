@@ -1,5 +1,6 @@
 package backend.academy.hangman;
 
+import backend.academy.hangman.states.GameOverState;
 import java.util.Scanner;
 
 public class Main {
@@ -15,7 +16,7 @@ public class Main {
         while (!(game.getState() instanceof GameOverState)) {
             game.display();
             String input = scanner.nextLine();
-            game.enterLetter(input.charAt(0));
+            game.validateInput(input);
         }
 
         game.display();

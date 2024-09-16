@@ -1,7 +1,13 @@
 package backend.academy.hangman;
 
+import backend.academy.hangman.states.BaseState;
+import backend.academy.hangman.states.WelcomeState;
+
 public class HangmanGame {
-    private State state;
+    private BaseState state;
+    private HiddenWord hiddenWord;
+    private int attempts;
+    private boolean isWin = false;
 
     public HangmanGame() {
         setState(new WelcomeState(this));
@@ -11,15 +17,39 @@ public class HangmanGame {
         state.display();
     }
 
-    public void enterLetter(char letter) {
-        state.enterLetter(letter);
+    public void validateInput(String input) {
+        state.validateInput(input);
     }
 
-    public void setState(State state) {
+    public void setState(BaseState state) {
         this.state = state;
     }
 
-    public State getState() {
+    public BaseState getState() {
         return state;
+    }
+
+    public void setHiddenWord(String word) {
+        this.hiddenWord = new HiddenWord(word);
+    }
+
+    public HiddenWord getHiddenWord() {
+        return hiddenWord;
+    }
+
+    public void setAttempts(int attempts) {
+        this.attempts = attempts;
+    }
+
+    public int getAttempts() {
+        return attempts;
+    }
+
+    public boolean isWin() {
+        return isWin;
+    }
+
+    public void setWin(boolean win) {
+        isWin = win;
     }
 }
