@@ -42,4 +42,8 @@ public class HiddenWord {
         }
         return isRightLetter;
     }
+
+    public String getWord() {
+        return word;
+    }
 }

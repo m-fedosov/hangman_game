@@ -13,6 +13,7 @@ public class GameOverState extends BaseState {
             print("Игра закончена. Вы победили!");
         } else {
             print("Игра закончена. Вы проиграли :(");
+            print("А ведь слово было простое: " + context.getHiddenWord().getWord());
         }
 
     }
