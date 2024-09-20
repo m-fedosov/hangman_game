@@ -1,22 +1,22 @@
 package backend.academy.hangman.states;
 
-import backend.academy.hangman.CategoryManager;
+import backend.academy.hangman.CategoryWordProvider;
 import backend.academy.hangman.HangmanGame;
 import java.util.Random;
 
 public class SelectCategoryState extends BaseState {
-    private final CategoryManager categoryManager;
+    private final CategoryWordProvider categoryWordProvider;
 
     public SelectCategoryState(HangmanGame context) {
         super(context);
-        this.categoryManager = new CategoryManager();
+        this.categoryWordProvider = new CategoryWordProvider();
     }
 
     @Override
     public void display() {
         print("Выберите категорию:");
         int index = 1;
-        for (String category : categoryManager.getCategories()) {
+        for (String category : categoryWordProvider.getCategories()) {
             print(index + ". " + category);
             index++;
         }
@@ -25,7 +25,7 @@ public class SelectCategoryState extends BaseState {
 
     @Override
     public void enterLetter(char letter) {
-        int cntCategories = categoryManager.getCategories().size();
+        int cntCategories = categoryWordProvider.getCategories().size();
         int categoryIndex;
         if (Character.isSpaceChar(letter)) {
             Random random = new Random();
@@ -38,10 +38,10 @@ public class SelectCategoryState extends BaseState {
             return;
         }
 
-        String selectedCategory = categoryManager.getCategories().get(categoryIndex - 1);
+        String selectedCategory = categoryWordProvider.getCategories().get(categoryIndex - 1);
         print("Выбрана категория - " + selectedCategory);
 
-        String hiddenWord = categoryManager.getRandomWordFromCategory(selectedCategory);
+        String hiddenWord = categoryWordProvider.getRandomWordFromCategory(selectedCategory);
 
         context.setHiddenWord(hiddenWord);
         context.setState(new SelectDifficultyState(context));

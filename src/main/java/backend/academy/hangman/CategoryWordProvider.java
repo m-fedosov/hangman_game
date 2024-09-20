@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class CategoryManager {
+public class CategoryWordProvider {
     private Map<String, List<String>> categories;
 
-    public CategoryManager() {
+    public CategoryWordProvider() {
         categories = new HashMap<>();
         loadCategoriesFromJson("categories.json");
     }
