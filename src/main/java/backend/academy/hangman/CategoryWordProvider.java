@@ -10,21 +10,18 @@ import java.util.Map;
 import java.util.Random;
 
 public class CategoryWordProvider {
-    private Map<String, List<String>> categories;
+    private final Map<String, List<String>> categories;
 
     public CategoryWordProvider() {
         categories = new HashMap<>();
-        loadCategoriesFromJson("categories.json");
+        String FILENAME = "categories.json";
+        loadCategoriesFromJson(FILENAME);
     }
 
     @SuppressWarnings("RegexpSinglelineJava")
     private void loadCategoriesFromJson(String fileName) {
         ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName);
-            if (inputStream == null) {
-                throw new IOException("Файл не найден: " + fileName);
-            }
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName))  {
             // Чтение JSON в строку
             Map<String, List<String>> loadedCategories = objectMapper.readValue(inputStream, Map.class);
             categories.putAll(loadedCategories);
