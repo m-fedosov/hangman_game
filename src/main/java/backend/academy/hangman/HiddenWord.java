@@ -1,31 +1,24 @@
 package backend.academy.hangman;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HiddenWord {
     private final String word;
-    private final ArrayList<Integer> guessedLetters;
+    private final char[] revealedLetters;
 
     public HiddenWord(String word) {
         this.word = word;
-        guessedLetters = new ArrayList<>();
+        revealedLetters = new char[word.length()];
+        Arrays.fill(revealedLetters, '_');
     }
 
     public String getWithGuessedLetters() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < word.length(); i++) {
-            if (guessedLetters.contains(i)) {
-                stringBuilder.append(word.charAt(i));
-            } else {
-                stringBuilder.append('_');
-            }
-        }
-        return stringBuilder.toString();
+        return new String(revealedLetters);
     }
 
     public boolean isWordGuessed() {
-        for (int i = 0; i < word.length(); i++) {
-            if (!guessedLetters.contains(i)) {
+        for (char c : revealedLetters) {
+            if (c == '_') {
                 return false;
             }
         }
@@ -35,8 +28,8 @@ public class HiddenWord {
     public boolean checkLetter(char letter) {
         boolean isRightLetter = false;
         for (int i = 0; i < word.length(); i++) {
-            if (letter == word.charAt(i)) {
-                guessedLetters.add(i);
+            if (letter == word.charAt(i) && revealedLetters[i] == '_') {
+                revealedLetters[i] = letter;
                 isRightLetter = true;
             }
         }
