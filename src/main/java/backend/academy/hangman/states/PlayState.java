@@ -44,7 +44,7 @@ public class PlayState extends BaseState {
             context.setWin(true);
             context.setState(new GameOverState(context));
         }
-        if (context.getAttempts() == 0) {
+        if (context.getAttempts() <= 0) {
             display();
             context.setWin(false);
             context.setState(new GameOverState(context));
