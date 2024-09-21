@@ -3,17 +3,21 @@ package backend.academy.hangman.states;
 import backend.academy.hangman.HangmanDrawing;
 import backend.academy.hangman.HangmanGame;
 import backend.academy.hangman.HiddenWord;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PlayState extends BaseState {
     private static final String VALID_CHARS_REGEX = "[а-яА-Я]{1}";
 
     private final HangmanDrawing hangmanDrawing;
     private final HiddenWord hiddenWord;
+    private final Set<Character> guessedLetters; // Хранение введённых букв
 
     public PlayState(HangmanGame context) {
         super(context);
         hiddenWord = context.getHiddenWord();
         hangmanDrawing = new HangmanDrawing(context.getAttempts());
+        guessedLetters = new HashSet<>();
     }
 
     @Override
@@ -25,6 +29,12 @@ public class PlayState extends BaseState {
 
     @Override
     public void enterLetter(char letter) {
+        if (guessedLetters.contains(letter)) {
+            print("Эта буква уже была введена");
+            return;
+        }
+        guessedLetters.add(letter);
+
         if (!hiddenWord.checkLetter(letter)) {
             context.setAttempts(context.getAttempts() - 1);
             hangmanDrawing.drawNextPart();
