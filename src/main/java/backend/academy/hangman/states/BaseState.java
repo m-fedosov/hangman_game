@@ -27,4 +27,8 @@ public abstract class BaseState {
     void print(String text) {
         System.out.println(text);
     }
+
+    public boolean isGameOver() {
+        return false;
+    }
 }

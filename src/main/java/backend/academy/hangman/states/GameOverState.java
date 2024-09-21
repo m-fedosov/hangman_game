@@ -22,4 +22,9 @@ public class GameOverState extends BaseState {
     public void enterLetter(char letter) {
 
     }
+
+    @Override
+    public boolean isGameOver() {
+        return true;
+    }
 }
