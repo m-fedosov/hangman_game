@@ -12,14 +12,11 @@ public class DifficultyManager {
         initDifficulties();
     }
 
-    @SuppressWarnings("MagicNumber")
     public void initDifficulties() {
         difficulties = new TreeMap<>();
-        difficulties.put("Карапуз", 10);
-        difficulties.put("Без напряга", 8);
-        difficulties.put("Норм", 6);
-        difficulties.put("Реальный хардкор", 4);
-        difficulties.put("Это было не то что смело, это было жесть как смело", 1);
+        for (Difficulty difficulty : Difficulty.values()) {
+            difficulties.put(difficulty.getName(), difficulty.getAttempts());
+        }
     }
 
     public List<String> getDifficultiesNames() {
