@@ -14,8 +14,8 @@ public class CategoryWordProvider {
 
     public CategoryWordProvider() {
         categories = new HashMap<>();
-        String FILENAME = "categories.json";
-        loadCategoriesFromJson(FILENAME);
+        String fileName = "categories.json";
+        loadCategoriesFromJson(fileName);
     }
 
     @SuppressWarnings("RegexpSinglelineJava")
