@@ -15,6 +15,11 @@ public abstract class BaseState {
     public abstract void enterLetter(char letter);
 
     public void validateInput(String input) {
+        if (input == null || input.isEmpty()) {
+            print("Пустой ввод запрещён.");
+            return;
+        }
+
         if (InputValidator.isValidInput(input)) {
             char letter = Character.toLowerCase(input.charAt(0));
             enterLetter(letter);

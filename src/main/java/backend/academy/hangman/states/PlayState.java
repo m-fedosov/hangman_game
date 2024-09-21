@@ -53,6 +53,11 @@ public class PlayState extends BaseState {
 
     @Override
     public void validateInput(String input) {
+        if (input == null || input.isEmpty()) {
+            print("Пустой ввод запрещён.");
+            return;
+        }
+
         if (isValidInput(input)) {
             char letter = Character.toLowerCase(input.charAt(0));
             enterLetter(letter);
