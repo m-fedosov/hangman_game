@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class CategoryWordProvider {
-    private final Map<String, List<String>> categories;
+    private final Map<String, List<WordHintPair>> categories;
 
     public CategoryWordProvider() {
         categories = new HashMap<>();
@@ -23,8 +23,16 @@ public class CategoryWordProvider {
         ObjectMapper objectMapper = new ObjectMapper();
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(fileName))  {
             // Чтение JSON в строку
-            Map<String, List<String>> loadedCategories = objectMapper.readValue(inputStream, Map.class);
-            categories.putAll(loadedCategories);
+            Map<String, List<Map<String, String>>> loadedCategories = objectMapper.readValue(inputStream, Map.class);
+            for (Map.Entry<String, List<Map<String, String>>> entry : loadedCategories.entrySet()) {
+                List<WordHintPair> wordHintPairs = new ArrayList<>();
+                for (Map<String, String> wordHintMap : entry.getValue()) {
+                    String word = wordHintMap.get("слово");
+                    String hint = wordHintMap.get("подсказка");
+                    wordHintPairs.add(new WordHintPair(word, hint));
+                }
+                categories.put(entry.getKey(), wordHintPairs);
+            }
         } catch (IOException e) {
             System.out.println("Ошибка при загрузке категорий: " + e.getMessage());
             System.exit(1); // Остановка программы в случае ошибки
@@ -35,8 +43,8 @@ public class CategoryWordProvider {
         return new ArrayList<>(categories.keySet());
     }
 
-    public String getRandomWordFromCategory(String category) {
-        List<String> words = categories.getOrDefault(category, new ArrayList<>());
+    public WordHintPair getRandomWordHintPairFromCategory(String category) {
+        List<WordHintPair> words = categories.getOrDefault(category, new ArrayList<>());
         Random random = new Random();
         return words.get(random.nextInt(words.size()));
     }

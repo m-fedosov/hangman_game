@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class PlayState extends BaseState {
-    private static final String VALID_CHARS_REGEX = "[а-яА-Я]{1}";
+    private static final String VALID_CHARS_REGEX = "[а-яА-Я?]{1}";
 
     private final HangmanDrawing hangmanDrawing;
     private final HiddenWord hiddenWord;
@@ -23,12 +23,22 @@ public class PlayState extends BaseState {
     @Override
     public void display() {
         print(hangmanDrawing.getArt());
+        if (context.isHintUsed()) {
+            print(context.getHint());
+        } else {
+            print("введи \"?\" чтобы получить подсказку");
+        }
         print(hiddenWord.getWithGuessedLetters());
         print("Осталось попыток: " + context.getAttempts());
     }
 
     @Override
     public void enterLetter(char letter) {
+        if (letter == '?') {
+            context.setHintUsed(true);
+            return;
+        }
+
         if (guessedLetters.contains(letter)) {
             print("Эта буква уже была введена");
             return;

@@ -8,6 +8,8 @@ public class HangmanGame {
     private HiddenWord hiddenWord;
     private int attempts;
     private boolean isWin = false;
+    private String hint;
+    private boolean isHintUsed = false;
 
     public HangmanGame() {
         setState(new WelcomeState(this));
@@ -37,6 +39,14 @@ public class HangmanGame {
         return hiddenWord;
     }
 
+    public String getHint() {
+        return hint;
+    }
+
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
+
     public void setAttempts(int attempts) {
         this.attempts = attempts;
     }
@@ -51,5 +61,13 @@ public class HangmanGame {
 
     public void setWin(boolean win) {
         isWin = win;
+    }
+
+    public boolean isHintUsed() {
+        return isHintUsed;
+    }
+
+    public void setHintUsed(boolean hintUsed) {
+        isHintUsed = hintUsed;
     }
 }
