@@ -2,6 +2,11 @@ package backend.academy.hangman;
 
 public class EasterEgg {
 
+    // Private constructor to prevent instantiation
+    private EasterEgg() {
+        throw new UnsupportedOperationException("Utility class should not be instantiated");
+    }
+
     public static String getAsciiArt() {
         return """
                                              ......                      __  _  ____  __ __  ______   ___   __\s

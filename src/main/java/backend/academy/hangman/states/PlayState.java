@@ -36,28 +36,25 @@ public class PlayState extends BaseState {
     public void enterLetter(char letter) {
         if (letter == '?') {
             context.setHintUsed(true);
-            return;
-        }
-
-        if (guessedLetters.contains(letter)) {
+        } else if (guessedLetters.contains(letter)) {
             print("Эта буква уже была введена");
-            return;
-        }
-        guessedLetters.add(letter);
+        } else {
+            guessedLetters.add(letter);
 
-        if (!hiddenWord.checkLetter(letter)) {
-            context.setAttempts(context.getAttempts() - 1);
-            hangmanDrawing.drawNextPart();
-        }
-        if (hiddenWord.isWordGuessed()) {
-            display();
-            context.setWin(true);
-            context.setState(new GameOverState(context));
-        }
-        if (context.getAttempts() <= 0) {
-            display();
-            context.setWin(false);
-            context.setState(new GameOverState(context));
+            if (!hiddenWord.checkLetter(letter)) {
+                context.setAttempts(context.getAttempts() - 1);
+                hangmanDrawing.drawNextPart();
+            }
+            if (hiddenWord.isWordGuessed()) {
+                display();
+                context.setWin(true);
+                context.setState(new GameOverState(context));
+            }
+            if (context.getAttempts() <= 0) {
+                display();
+                context.setWin(false);
+                context.setState(new GameOverState(context));
+            }
         }
     }
 
