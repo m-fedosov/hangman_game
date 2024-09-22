@@ -15,8 +15,8 @@ public class PlayState extends BaseState {
 
     public PlayState(HangmanGame context) {
         super(context);
-        hiddenWord = context.getHiddenWord();
-        hangmanDrawing = new HangmanDrawing(context.getAttempts());
+        hiddenWord = context.hiddenWord();
+        hangmanDrawing = new HangmanDrawing(context.attempts());
         guessedLetters = new HashSet<>();
     }
 
@@ -24,36 +24,36 @@ public class PlayState extends BaseState {
     public void display() {
         print(hangmanDrawing.getArt());
         if (context.isHintUsed()) {
-            print(context.getHint());
+            print(context.hint());
         } else {
             print("введи \"?\" чтобы получить подсказку");
         }
         print(hiddenWord.getWithGuessedLetters());
-        print("Осталось попыток: " + context.getAttempts());
+        print("Осталось попыток: " + context.attempts());
     }
 
     @Override
     public void enterLetter(char letter) {
         if (letter == '?') {
-            context.setHintUsed(true);
+            context.isHintUsed(true);
         } else if (guessedLetters.contains(letter)) {
             print("Эта буква уже была введена");
         } else {
             guessedLetters.add(letter);
 
             if (!hiddenWord.checkLetter(letter)) {
-                context.setAttempts(context.getAttempts() - 1);
+                context.attempts(context.attempts() - 1);
                 hangmanDrawing.drawNextPart();
             }
             if (hiddenWord.isWordGuessed()) {
                 display();
-                context.setWin(true);
-                context.setState(new GameOverState(context));
+                context.isWin(true);
+                context.state(new GameOverState(context));
             }
-            if (context.getAttempts() <= 0) {
+            if (context.attempts() <= 0) {
                 display();
-                context.setWin(false);
-                context.setState(new GameOverState(context));
+                context.isWin(false);
+                context.state(new GameOverState(context));
             }
         }
     }

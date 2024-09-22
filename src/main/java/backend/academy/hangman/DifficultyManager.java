@@ -15,7 +15,7 @@ public class DifficultyManager {
     public void initDifficulties() {
         difficulties = new TreeMap<>();
         for (Difficulty difficulty : Difficulty.values()) {
-            difficulties.put(difficulty.getName(), difficulty.getAttempts());
+            difficulties.put(difficulty.name(), difficulty.getAttempts());
         }
     }
 

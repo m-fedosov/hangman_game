@@ -1,11 +1,9 @@
 package backend.academy.hangman;
 
-public class EasterEgg {
+import lombok.experimental.UtilityClass;
 
-    // Private constructor to prevent instantiation
-    private EasterEgg() {
-        throw new UnsupportedOperationException("Utility class should not be instantiated");
-    }
+@UtilityClass
+public class EasterEgg {
 
     public static String getAsciiArt() {
         return """

@@ -1,9 +1,10 @@
 package backend.academy.hangman;
 
 import java.util.Arrays;
+import lombok.Getter;
 
 public class HiddenWord {
-    private final String word;
+    @Getter private final String word;
     private final char[] revealedLetters;
 
     public HiddenWord(String word) {
@@ -36,7 +37,4 @@ public class HiddenWord {
         return isRightLetter;
     }
 
-    public String getWord() {
-        return word;
-    }
 }

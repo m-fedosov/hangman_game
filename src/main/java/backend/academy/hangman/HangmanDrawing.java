@@ -2,7 +2,7 @@ package backend.academy.hangman;
 
 public class HangmanDrawing {
     private int attemptsRemains;
-    private int maxAttempts;
+    private final int maxAttempts;
 
     public HangmanDrawing(int maxAttempts) {
         this.maxAttempts = maxAttempts;
@@ -22,9 +22,8 @@ public class HangmanDrawing {
             drawing.append("  |       |\n");  // Рисуем веревку
         }
 
-        for (int i = 0; i < attemptsRemains - 3; i++) {
-            drawing.append("  |       \n");   // Пустое пространство до начала веревки
-        }
+        // Пустое пространство до начала веревки
+        drawing.append("  |       \n".repeat(Math.max(0, attemptsRemains - 3)));
 
         // 3. Рисуем голову, тело и ноги человечка по мере уменьшения попыток
         String head = attemptsRemains <= 2 ? "(_)" : "   ";
@@ -44,11 +43,10 @@ public class HangmanDrawing {
         return drawing.toString();
     }
 
-    public boolean drawNextPart() {
+    public void drawNextPart() {
         if (attemptsRemains == 0) {
-            return false;
+            return;
         }
         attemptsRemains -= 1;
-        return true;
     }
 }

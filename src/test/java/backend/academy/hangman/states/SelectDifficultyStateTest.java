@@ -12,12 +12,12 @@ public class SelectDifficultyStateTest extends BaseStateTest {
     @Test
     void testStateTransitionSelectPlayState() {
         game.validateInput(" ");
-        assertInstanceOf(PlayState.class, game.getState());
+        assertInstanceOf(PlayState.class, game.state());
     }
 
     @Test
     void testStateTransitionSelectDifficultyState() {
         game.validateInput("а");
-        assertInstanceOf(SelectDifficultyState.class, game.getState());
+        assertInstanceOf(SelectDifficultyState.class, game.state());
     }
 }

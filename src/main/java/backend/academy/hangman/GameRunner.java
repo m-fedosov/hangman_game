@@ -12,7 +12,7 @@ public class GameRunner {
     }
 
     public void run() {
-        while (!game.getState().isGameOver()) {
+        while (!game.state().isGameOver()) {
             game.display();
             String input = scanner.nextLine();
             game.validateInput(input);

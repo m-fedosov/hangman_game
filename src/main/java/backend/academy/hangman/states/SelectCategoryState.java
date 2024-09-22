@@ -2,6 +2,7 @@ package backend.academy.hangman.states;
 
 import backend.academy.hangman.CategoryWordProvider;
 import backend.academy.hangman.HangmanGame;
+import backend.academy.hangman.HiddenWord;
 import backend.academy.hangman.WordHintPair;
 import java.util.Random;
 
@@ -43,11 +44,11 @@ public class SelectCategoryState extends BaseState {
         print("Выбрана категория - " + selectedCategory);
 
         WordHintPair wordHintPair = categoryWordProvider.getRandomWordHintPairFromCategory(selectedCategory);
-        String hiddenWord = wordHintPair.getWord();
-        String hint = wordHintPair.getHint();
+        HiddenWord hiddenWord = new HiddenWord(wordHintPair.word());
+        String hint = wordHintPair.hint();
 
-        context.setHiddenWord(hiddenWord);
-        context.setHint(hint);
-        context.setState(new SelectDifficultyState(context));
+        context.hiddenWord(hiddenWord);
+        context.hint(hint);
+        context.state(new SelectDifficultyState(context));
     }
 }

@@ -12,12 +12,12 @@ public class WelcomeStateTest extends BaseStateTest {
     @Test
     void testStateTransitionSelectCategoryState() {
         game.validateInput(" ");
-        assertInstanceOf(SelectCategoryState.class, game.getState());
+        assertInstanceOf(SelectCategoryState.class, game.state());
     }
 
     @Test
     void testStateTransitionRulesState() {
         game.validateInput("а");
-        assertInstanceOf(RulesState.class, game.getState());
+        assertInstanceOf(RulesState.class, game.state());
     }
 }

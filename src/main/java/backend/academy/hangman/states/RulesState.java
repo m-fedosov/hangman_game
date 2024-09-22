@@ -34,7 +34,7 @@ public class RulesState extends BaseState {
     @Override
     public void enterLetter(char letter) {
         if (Character.isSpaceChar(letter)) {
-            context.setState(new SelectCategoryState(context));
+            context.state(new SelectCategoryState(context));
         }
     }
 }

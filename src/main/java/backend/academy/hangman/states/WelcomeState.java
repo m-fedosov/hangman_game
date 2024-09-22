@@ -24,9 +24,9 @@ public class WelcomeState extends BaseState {
     @Override
     public void enterLetter(char letter) {
         if (Character.isSpaceChar(letter)) {
-            context.setState(new SelectCategoryState(context));
+            context.state(new SelectCategoryState(context));
         } else {
-            context.setState(new RulesState(context));
+            context.state(new RulesState(context));
         }
     }
 }

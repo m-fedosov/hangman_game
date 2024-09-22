@@ -45,10 +45,10 @@ public class SelectDifficultyState extends BaseState {
         print("Количество попыток - " + attempts);
 
         if (attempts == 1) {
-            context.setEasterEggEnable(true);
+            context.isEasterEggEnable(true);
         }
 
-        context.setAttempts(attempts);
-        context.setState(new PlayState(context));
+        context.attempts(attempts);
+        context.state(new PlayState(context));
     }
 }

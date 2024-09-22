@@ -15,21 +15,21 @@ public class SelectCategoryStateTest extends BaseStateTest {
     @Test
     void testStateTransitionSelectDifficultyState() {
         game.validateInput(" ");
-        assertInstanceOf(SelectDifficultyState.class, game.getState());
+        assertInstanceOf(SelectDifficultyState.class, game.state());
     }
 
     @Test
     void testStateTransitionSelectCategoryState() {
         game.validateInput("а");
-        assertInstanceOf(SelectCategoryState.class, game.getState());
+        assertInstanceOf(SelectCategoryState.class, game.state());
     }
 
     // проверка правильности выбора слова из списка
     @Test
     void testHiddenWordChoosen() {
-        assertNull(game.getHiddenWord());
+        assertNull(game.hiddenWord());
         game.validateInput(" ");
-        assertInstanceOf(HiddenWord.class, game.getHiddenWord());
-        assertNotEquals(null, game.getHiddenWord());
+        assertInstanceOf(HiddenWord.class, game.hiddenWord());
+        assertNotEquals(null, game.hiddenWord());
     }
 }

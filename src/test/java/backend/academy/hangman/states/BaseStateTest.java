@@ -10,7 +10,7 @@ public abstract class BaseStateTest {
     @BeforeEach
     void setUp() {
         game = new HangmanGame();
-        game.setState(createState());
+        game.state(createState());
     }
 
     protected abstract BaseState createState();
