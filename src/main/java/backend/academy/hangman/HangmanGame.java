@@ -10,6 +10,7 @@ public class HangmanGame {
     private boolean isWin = false;
     private String hint;
     private boolean isHintUsed = false;
+    private boolean isEasterEggEnable = false;
 
     public HangmanGame() {
         setState(new WelcomeState(this));
@@ -69,5 +70,13 @@ public class HangmanGame {
 
     public void setHintUsed(boolean hintUsed) {
         isHintUsed = hintUsed;
+    }
+
+    public boolean isEasterEggEnable() {
+        return isEasterEggEnable;
+    }
+
+    public void setEasterEggEnable(boolean easterEggEnable) {
+        isEasterEggEnable = easterEggEnable;
     }
 }

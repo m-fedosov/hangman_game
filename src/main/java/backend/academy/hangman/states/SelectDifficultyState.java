@@ -44,6 +44,10 @@ public class SelectDifficultyState extends BaseState {
         Integer attempts = difficultyManager.getDifficultyAttempts(selectedDifficulty);
         print("Количество попыток - " + attempts);
 
+        if (attempts == 1) {
+            context.setEasterEggEnable(true);
+        }
+
         context.setAttempts(attempts);
         context.setState(new PlayState(context));
     }
